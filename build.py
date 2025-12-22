@@ -4,7 +4,7 @@ from jinja2 import Environment, FileSystemLoader
 # --- 1. 資料設定區 (食材) ---
 
 # 共用設定
-site_title = "劍潭・山河日誌"
+site_title = "劍潭・山河新生"
 
 # 首頁資料
 index_context = {
