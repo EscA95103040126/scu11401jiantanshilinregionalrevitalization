@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時光隧道・劍潭士林記憶</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. 核心色調與字體 (Satoyama Style) --- */
+        :root {
+            --bg-color: #F9F7F2;       
+            --text-main: #463f3a;      
+            --text-light: #8A817C;     
+            --accent-green: #4A6D4F;   
+            --accent-brown: #8B6F47;   
+            --card-bg: #FFFFFF;
+            --line-color: #dcbfa6;     
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            padding-bottom: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238b6f47' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, .year-label { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; }
+
+        /* --- 2. 導覽列 --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 64px;
+            background: rgba(249, 247, 242, 0.9);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex; align-items: center; padding: 0 40px;
+            border-bottom: 1px dashed var(--line-color);
+        }
+
+        .back-btn {
+            font-size: 15px; color: var(--accent-brown); text-decoration: none;
+            display: flex; align-items: center; font-weight: 500;
+            padding: 6px 16px; border: 1px solid var(--accent-brown); border-radius: 50px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover { background: var(--accent-brown); color: #fff; }
+
+        /* --- 3. 標題區 --- */
+        .header-section {
+            height: 70vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px;
+            position: relative;
+        }
+        .header-section::before {
+            content: ''; position: absolute; top: 20%; left: 50%; transform: translateX(-50%) rotate(-2deg);
+            width: 120px; height: 35px; background: rgba(237, 224, 212, 0.8); z-index: -1;
+        }
+        .header-section h1 { font-size: clamp(36px, 6vw, 64px); color: var(--text-main); margin-bottom: 24px; letter-spacing: 0.1em; }
+        .header-section p { font-size: 18px; color: var(--text-light); max-width: 600px; line-height: 1.8; }
+
+        /* --- 4. 時間軸佈局 --- */
+        .timeline-container {
+            max-width: 1000px; margin: 0 auto; position: relative; padding: 0 20px;
+        }
+        .timeline-line {
+            position: absolute; left: 50%; top: 0; bottom: 0;
+            width: 2px; background-image: linear-gradient(to bottom, var(--line-color) 50%, transparent 50%);
+            background-size: 2px 20px;
+            transform: translateX(-50%);
+        }
+
+        .era-section {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 120px; opacity: 0; transform: translateY(40px);
+            transition: all 1s ease;
+            position: relative;
+        }
+        .era-section.visible { opacity: 1; transform: translateY(0); }
+        .era-section::after {
+            content: ''; position: absolute; left: 50%; top: 20px;
+            width: 16px; height: 16px; background: var(--bg-color);
+            border: 4px solid var(--accent-brown); border-radius: 50%;
+            transform: translateX(-50%); z-index: 1;
+        }
+
+        .era-content { width: 42%; padding: 20px; text-align: right; }
+        .era-image { width: 42%; padding: 10px; }
+
+        .era-section:nth-child(even) { flex-direction: row-reverse; }
+        .era-section:nth-child(even) .era-content { text-align: left; }
+
+        .year-label { font-size: 48px; color: var(--accent-brown); opacity: 0.3; line-height: 1; margin-bottom: 10px; display: block; }
+        .era-title { font-size: 28px; margin-bottom: 16px; color: var(--text-main); position: relative; display: inline-block; }
+        .era-desc { font-size: 15px; color: var(--text-light); line-height: 1.8; text-align: justify; }
+
+        /* --- 圖片樣式 (修復版) --- */
+        .img-wrapper {
+            background: #fff;
+            padding: 12px 12px 40px 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: rotate(-2deg);
+            transition: transform 0.5s ease;
+            border-radius: 2px;
+            /* ⚠️ 關鍵修復：限制最大寬度，防止圖片暴走 */
+            max-width: 100%; 
+        }
+        .era-section:nth-child(even) .img-wrapper { transform: rotate(2deg); }
+
+        /* ⚠️ 關鍵修復：加重權重 (!important) 確保懸停動畫在左右兩邊都有效 */
+        .img-wrapper:hover { 
+            transform: rotate(0deg) scale(1.05) !important; 
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .img-wrapper img {
+            width: 100%; aspect-ratio: 4/3; object-fit: cover;
+            filter: sepia(0.2) contrast(0.9); border-radius: 2px;
+        }
+
+        /* --- 手機版響應式 (修復版) --- */
+        @media (max-width: 768px) {
+            .timeline-line { left: 20px; }
+            .era-section::after { left: 20px; }
+            
+            .era-section { flex-direction: column !important; margin-bottom: 80px; padding-left: 40px; }
+            /* ⚠️ 關鍵修復：手機版圖片寬度改為 100%，但設定 max-width 避免過大 */
+            .era-content { width: 100%; text-align: left !important; margin-bottom: 10px; padding: 0; }
+            .era-image { width: 100%; max-width: 500px; margin: 0 auto; text-align: left !important; }
+            
+            .year-label { font-size: 36px; }
+            .img-wrapper { transform: rotate(0deg) !important; margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn">← 返回首頁</a>
+    </nav>
+
+    <div class="header-section">
+        <p style="color: var(--accent-brown); letter-spacing: 2px; font-size: 14px; margin-bottom: 10px; font-weight: bold;">TIME TUNNEL</p>
+        <h1>士林記憶・時光顯影</h1>
+        <p>每一張照片，都是通往過去的入口。<br>從清領時期的古蹟，到現代士林的繁華。</p>
+    </div>
+
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">Pre-</span>
+                <h2 class="era-title">芝山巖</h2>
+                <p class="era-desc">
+                    士林文明的發源地，這座小山丘見證了從史前文化到現代的變遷。擁有珍貴的史前遺址、古老的惠濟宮，以及盤根錯節的老樹，是士林最古老的記憶膠囊。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/zhishanyan.png" alt="芝山巖">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1741</span>
+                <h2 class="era-title">士林神農宮</h2>
+                <p class="era-desc">
+                    舊街（今士林舊街）的信仰中心，見證了漳州移民早期的開墾史。最初僅為福德祠，後改奉神農大帝，祈求五穀豐收，是士林地區最早建立的廟宇之一。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/shennong_temple.png" alt="士林神農宮">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1796</span>
+                <h2 class="era-title">士林慈諴宮</h2>
+                <p class="era-desc">
+                    士林新街的核心，也是「士林媽祖廟」。當年潘家開闢新街時，以此廟為中心規劃了井字型街道。廟口的熱鬧人潮，逐漸孕育出了後來聞名國際的士林夜市。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/cixian_temple.png" alt="士林慈諴宮">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1851</span>
+                <h2 class="era-title">士林潘宅</h2>
+                <p class="era-desc">
+                    見證士林望族的輝煌。潘家對於士林新街的建設功不可沒。這座宅邸保留了完整的傳統建築形式，磚牆瓦片間透露著當年的氣派與家族榮光。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/pan_mansion.png" alt="士林潘宅">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1867</span>
+                <h2 class="era-title">郭元益糕餅</h2>
+                <p class="era-desc">
+                    從一根扁擔起家，喊出「一根扁擔走天下」的傳奇。郭元益傳承百年的漢餅手藝，不僅是士林最甜蜜的味覺記憶，更是台灣糕餅史上的重要一頁。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/kuoyuan_ye.png" alt="郭元益糕餅博物館">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1895</span>
+                <h2 class="era-title">士林國小</h2>
+                <p class="era-desc">
+                    前身為「芝山巖學堂」與「八芝蘭公學校」，是全台灣最早設立的現代化小學之一。校門口的老樹與紅磚校舍，陪伴了無數士林子弟的童年時光。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/shilin_elementary.png" alt="士林國小">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1901</span>
+                <h2 class="era-title">水路與擺渡</h2>
+                <p class="era-desc">
+                    在公路尚未發達的年代，基隆河是士林的命脈。劍潭渡口是通往台北城的必經之路，舢舨船往來兩岸，載運著農作物與前往大稻埕經商的人們。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/keelungriver.png" alt="早期基隆河">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1913</span>
+                <h2 class="era-title">舊士林市場</h2>
+                <p class="era-desc">
+                    這座紅磚建造的公有市場，不僅是早期的交易中心，更是老士林人的生活重心。白天的喧囂與夜晚的小吃香氣，交織出士林最接地氣的風景。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/old_shilin_market.png" alt="舊士林市場">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1930s</span>
+                <h2 class="era-title">士林公民會館</h2>
+                <p class="era-desc">
+                    前身為「士林公會堂」，典雅的建築風格見證了日治時期地方自治的發展。如今轉型為公民會館，繼續作為在地文化展演與居民聚會的重要場域。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/civic_center.png" alt="士林公民會館">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1938</span>
+                <h2 class="era-title">敕使街道與神社</h2>
+                <p class="era-desc">
+                    日治時期，劍潭山被選為台灣神社（今圓山大飯店現址）所在地。為了迎接皇室，修築了筆直的「敕使街道」（今中山北路）與明治橋，徹底改變了士林的地貌。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/yuansanhotel.png" alt="日治時期建築">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1938</span>
+                <h2 class="era-title">圓山水神社</h2>
+                <p class="era-desc">
+                    隱身於草山水道系統之中，這座小巧的神社守護著水源地。幽靜而神秘的氛圍，保留了當年的石燈籠與狛犬，是城市中難得的秘境。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/water_shrine.png" alt="圓山水神社">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1950</span>
+                <h2 class="era-title">士林官邸</h2>
+                <p class="era-desc">
+                    曾經的元首官邸，在戒嚴時期充滿神秘色彩。如今花木扶疏，玫瑰園盛開，保留了關鍵歷史時刻的場景，成為市民假日賞花休閒的好去處。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/shilin_residence.png" alt="士林官邸">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1965</span>
+                <h2 class="era-title">紙廠與工業記憶</h2>
+                <p class="era-desc">
+                    戰後，士林紙廠的煙囪升起，造紙業成為在地的經濟支柱。機器運轉的聲音伴隨著那個世代的成長。隨著都市擴張，工業區逐漸轉型，留下了紅磚廠房的記憶。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/paper.png" alt="工業時期的士林">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1966</span>
+                <h2 class="era-title">林語堂故居</h2>
+                <p class="era-desc">
+                    幽默大師林語堂生前的居所。藍瓦白牆的設計，融合了西班牙風格與中式四合院的美感。先生曾言「宅中有園，園中有屋，屋中有院」，體現了生活的藝術。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/lin_yutang.png" alt="林語堂故居">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1967</span>
+                <h2 class="era-title">錢穆故居（素書樓）</h2>
+                <p class="era-desc">
+                    國學大師錢穆講學與居住之地。清幽的環境、滿園的楓樹，曾孕育無數文化種子。素書樓不僅是居所，更是傳承中華文化的重要精神堡壘。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/qian_mu.png" alt="錢穆故居">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1968</span>
+                <h2 class="era-title">陽明國中</h2>
+                <p class="era-desc">
+                    今陽明高中。成立於九年國民義務教育實施之初，校舍宏偉，見證了台灣教育普及化的重要階段，培育了無數在地優秀人才。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/yangming.jpg" alt="陽明國中">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1969</span>
+                <h2 class="era-title">劍潭公園壁畫</h2>
+                <p class="era-desc">
+                    國寶級藝術家顏水龍創作的馬賽克壁畫《從農業社會到工業社會》。這幅長達100公尺的巨作，紀錄了台灣轉型期的歷史面貌，是街頭珍貴的藝術資產。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/jiantan_park.jpg" alt="劍潭公園壁畫">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1970</span>
+                <h2 class="era-title">百齡國小</h2>
+                <p class="era-desc">
+                    伴隨基隆河廢河道填平後的社區發展而生。百齡國小的建立，標誌著士林後港地區人口的快速增長與都市化的進程。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/bailing_elementary.jpg" alt="百齡國小">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1980s</span>
+                <h2 class="era-title">三角渡</h2>
+                <p class="era-desc">
+                    台北最後的擺渡碼頭。見證了基隆河截彎取直後的變遷，這裡也是國寶級龍舟師傅阿正師的基地，承載著傳統龍舟製作工藝與河流文化。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/sanjiaodu.jpg" alt="三角渡">
+                </div>
+            </div>
+        </div>
+
+        <div class="era-section">
+            <div class="era-content">
+                <span class="year-label">1997</span>
+                <h2 class="era-title">龍骨與現代地標</h2>
+                <p class="era-desc">
+                    捷運淡水線通車，劍潭站以獨特的「龍舟」懸吊造型成為台北新地標。它不僅連通了交通，更象徵著士林從傳統走向現代。夜市規模也在此時達到鼎盛。
+                </p>
+            </div>
+            <div class="era-image">
+                <div class="img-wrapper">
+                    <img src="static/jiantanstation2.jpeg" alt="捷運通車">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer style="text-align: center; padding: 50px 0; color: #8A817C; font-size: 13px;">
+        <p>Copyright © 2024 Shilin Jiantan History Archive.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.era-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

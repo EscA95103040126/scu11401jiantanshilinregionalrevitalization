@@ -188,7 +188,7 @@
         .bus-time { font-size: 14px; color: var(--text-light); }
         .bus-time.arriving { color: #d66853; font-weight: 500; } /* 柔和的磚紅色 */
 
-        /* 3. 深度閱讀 */
+        /* 3. 在地店家 (原深度閱讀) */
         .card-read {
             grid-column: span 12;
             background-color: var(--accent-green);
@@ -284,7 +284,7 @@
                 <img src="static/圖片1.jpg" alt="Old Photo" class="polaroid-img">
                 <div class="handwriting" style="font-size: 24px; color: var(--accent-brown); margin-bottom: 10px;">時光顯影</div>
                 <p>那些被遺忘在基隆河畔的擺渡舟影，與老街巷弄裡的磚瓦記憶。</p>
-                <a href="#" class="btn-simple">閱讀更多物語</a>
+                <a href="history.html" class="btn-simple">進入時光隧道</a>
             </div>
 
             <div class="card card-info fade-in-scroll" id="life">
@@ -306,24 +306,17 @@
                         </span>
                     </div>
                     
-                    <div class="bus-row">
-                        <span class="bus-route">304</span>
-                        <span class="bus-time ">
-                            約 12 分
-                        </span>
-                    </div>
-                    
                 </div>
                 <p style="margin-top: 20px; font-size: 12px; color: #aaa;">* 悠閒地等待，也是一種生活。</p>
             </div>
 
             <div class="card card-read fade-in-scroll">
-                <span class="tag-pill">Deep Dive</span>
-                <h3 style="margin-top: 10px;">看不見的風景</h3>
+                <span class="tag-pill">Shops</span>
+                <h3 style="margin-top: 10px;">在地店家</h3>
                 <p style="color: rgba(255,255,255,0.8); margin: 10px 0 20px;">
-                    挖掘地圖上消失的隱藏版地標，一場關於「消失」與「重現」的數位策展。
+                    探訪巷弄內的職人手作與隱藏美食，感受在地的溫度。
                 </p>
-                <a href="#" style="color: #fff; border-bottom: 1px solid #fff; font-size: 14px; text-decoration: none;">進入專題</a>
+                <a href="shops.html" style="color: #fff; border-bottom: 1px solid #fff; font-size: 14px; text-decoration: none;">查看店家名錄</a>
             </div>
 
             <div class="card card-aqi fade-in-scroll">
@@ -332,7 +325,7 @@
                     <div class="aqi-circle">35</div>
                     <div>
                         <h3 style="margin: 0; font-size: 18px;">優良</h3>
-                        <p style="font-size: 13px; margin-top: 5px;">今日空氣清澈，適合沿著中山北路散步，或登上劍潭山遠眺。</p>
+                        <p style="font-size: 13px; margin-top: 5px;">空氣清澈，適合散步。</p>
                     </div>
                 </div>
             </div>
@@ -347,10 +340,6 @@
                     
                     <span class="spot-tag"># 神農宮</span>
                     
-                    <span class="spot-tag"># 雙溪河畔</span>
-                    
-                    <span class="spot-tag"># 士林紙廠</span>
-                    
                 </div>
             </div>
 
@@ -363,7 +352,6 @@
     </footer>
 
     <script>
-        // 簡單的淡入動畫
         document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {

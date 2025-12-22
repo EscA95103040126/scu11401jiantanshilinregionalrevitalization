@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在地店家 | 劍潭・山河日誌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F9F7F2; --text-main: #463f3a; --accent-green: #4A6D4F; --accent-brown: #8B6F47;
+        }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Noto Sans TC', sans-serif; padding: 40px 20px; }
+        
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        .back-btn { display: inline-block; text-decoration: none; color: var(--accent-green); font-weight: bold; margin-bottom: 40px; border: 1px solid var(--accent-green); padding: 8px 16px; border-radius: 50px; transition: 0.3s; }
+        .back-btn:hover { background: var(--accent-green); color: #fff; }
+
+        .header { text-align: center; margin-bottom: 60px; }
+        .header h1 { font-family: 'Zen Maru Gothic'; color: var(--accent-green); margin-bottom: 10px; }
+
+        /* 店家格狀排列 */
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .shop-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(74, 109, 79, 0.1); transition: 0.3s; }
+        .shop-card:hover { transform: translateY(-5px); }
+        .shop-img { width: 100%; height: 200px; object-fit: cover; background: #eee; }
+        .shop-content { padding: 24px; }
+        .shop-tag { background: #E8F0E4; color: var(--accent-green); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
+        .shop-name { font-size: 22px; font-weight: 700; margin-bottom: 10px; font-family: 'Zen Maru Gothic'; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← 返回首頁</a>
+
+        <div class="header">
+            <h1>在地職人</h1>
+            <p>走進巷弄，探訪堅持手作溫度的在地好店。</p>
+        </div>
+
+        <div class="shop-grid">
+            
+            <div class="shop-card">
+                <img src="static/圖片1.jpg" class="shop-img" alt="山腳咖啡">
+                <div class="shop-content">
+                    <span class="shop-tag">#手沖咖啡</span>
+                    <div class="shop-name">山腳咖啡</div>
+                    <p>隱身山邊的老宅咖啡，使用自家烘焙豆。</p>
+                </div>
+            </div>
+            
+            <div class="shop-card">
+                <img src="static/圖片1.jpg" class="shop-img" alt="阿婆草仔粿">
+                <div class="shop-content">
+                    <span class="shop-tag">#傳統點心</span>
+                    <div class="shop-name">阿婆草仔粿</div>
+                    <p>每日現做的客家美味，限量供應。</p>
+                </div>
+            </div>
+            
+            <div class="shop-card">
+                <img src="static/圖片1.jpg" class="shop-img" alt="劍潭書房">
+                <div class="shop-content">
+                    <span class="shop-tag">#獨立書店</span>
+                    <div class="shop-name">劍潭書房</div>
+                    <p>只賣關於土地與記憶的書。</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
