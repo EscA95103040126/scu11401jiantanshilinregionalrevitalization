@@ -40,9 +40,9 @@ shops_context = {
     "title": "在地職人",
     "desc": "走進巷弄，探訪堅持手作溫度的在地好店。",
     "shops": [
-        {"name": "山腳咖啡", "tag": "手沖咖啡", "desc": "隱身山邊的老宅咖啡，使用自家烘焙豆。", "img": "static/圖片1.jpg"},
-        {"name": "阿婆草仔粿", "tag": "傳統點心", "desc": "每日現做的客家美味，限量供應。", "img": "static/圖片1.jpg"},
-        {"name": "劍潭書房", "tag": "獨立書店", "desc": "只賣關於土地與記憶的書。", "img": "static/圖片1.jpg"},
+        {"name": "一品小吃", "tag": "庶民小吃", "desc": "樸實卻完整的一餐，滷肉飯與蛋花湯。", "img": "static/圖片1.jpg"},
+        {"name": "榮宗麵線", "tag": "庶民小吃", "desc": "蚵仔跟大腸份量實在，濃濃在地人情味的小吃美食。", "img": "static/圖片1.jpg"},
+        {"name": "嘉鄉豆腐店", "tag": "在地食材", "desc": "不只是販售豆腐，也延續關於土地與記憶的日常。", "img": "static/圖片1.jpg"},
     ]
 }
 
@@ -69,4 +69,5 @@ def build():
         print(f"✅ {output_name} 生成成功！")
 
 if __name__ == "__main__":
+
     build()
